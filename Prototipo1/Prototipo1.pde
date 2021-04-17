@@ -1,4 +1,6 @@
+//funciona el repositorio grupal ;)
 PImage rojo;
+
 int num;
 GestorDeInteraccion g;
 Dir_y_Vel mouse;
