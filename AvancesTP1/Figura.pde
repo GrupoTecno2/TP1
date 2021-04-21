@@ -13,11 +13,11 @@ class Figura {
 
   Figura() {
 
-    x =random(0.25 * width, 0.75 * width);
-    y =random(0.25 *height, 0.75 * height);
+    x =random(0.3 * width, 0.6 * width);
+  y =random(0.3 *height, 0.6 * height);
     g = new GestorDeInteraccion();
     tam =100;
-    estado= 0;
+    estado = int(random(1, 4));
 
     for ( int j = 1; j < rojo.length; j++ ) {
       rojo [j]  = loadImage("rojo"+ j +".png");
