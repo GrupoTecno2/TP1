@@ -6,19 +6,22 @@ int valorRojo, valorAzul, valorAmarillo;
 int fondo;
 float x, y;
 float tam;
+int estado;
 GestorDeInteraccion g;
 
 void setup() {
 
   size( 800, 800 );
   colorMode(HSB, 360, 100, 100);
+  imageMode(CENTER);
   fondo = int(random(3, 8));
   background(57, fondo, 97);
 
-  x =random(0.25 * width, 0.75 * width);
-  y =random(0.25 *height, 0.75 * height);
+  x =random(0.3 * width, 0.6 * width);
+  y =random(0.3 *height, 0.6 * height);
   g = new GestorDeInteraccion();
   tam =100;
+  estado = int(random(1, 4));
   
   for ( int j = 1; j < rojo.length; j++ )
     rojo [j]  = loadImage("rojo"+ j +".png");
@@ -30,13 +33,24 @@ void setup() {
   valorRojo = int(random(1, 11));
   valorAzul = int(random(1, 20));
   valorAmarillo = int(random(1, 6));
+  
+
+    println ("estado=",estado);
+  
+
 }
 
 void draw() {
   
   background(57, fondo, 97);
-  imageMode(CENTER);
-  image(rojo[valorRojo], x, y, tam, tam);
+  
+  if (estado==1) {
+      image(rojo[valorRojo], x, y, tam, tam);//
+    } else if (estado==2) {
+      image(azul[valorAzul], x, y, tam, tam);//
+    } else if (estado==3) {
+      image(amarillo[valorAmarillo], x, y, tam, tam);//
+    }
 
   g.actualizar();
 
