@@ -1,5 +1,4 @@
 class GestorDeInteraccion {
-   
   Dir_y_Vel mouse;
     //para determinar la direccion(arriba,abajo,derecha,izquierda)
     boolean seMoviaEnElFrameAnterior;
