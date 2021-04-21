@@ -19,6 +19,4 @@ void draw() {
 figura.dibujar();
 }
 
-void mouseMoved(){
-  figura.mouse();
-}
+
