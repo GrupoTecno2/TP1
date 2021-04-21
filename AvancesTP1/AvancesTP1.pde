@@ -4,7 +4,7 @@ float tam;
 PImage [] rojo = new PImage [11];//numero de figuras de rojo
 int objeto;
 GestorDeInteraccion g;
-Dir_y_Vel mouse;
+
 void setup() {
 
   size( 800, 800 );
@@ -18,7 +18,6 @@ void setup() {
   x =random(0.25 * width, 0.75 * width);
   y =random(0.25 *height, 0.75 * height);
   g = new GestorDeInteraccion();
-  mouse = new Dir_y_Vel();
   tam =100;
   /*
   surface.setTitle("Viaje en el Tiempo 2000");
@@ -33,19 +32,18 @@ void draw () {
   image(rojo[objeto], x , y, tam, tam);
 
   g.actualizar();
-  //if (mousePressed ) {
     
 
 if(g.arriba){
     println("arriba");
 }
-  if(g.abajo){
+  else if(g.abajo){
     println("abajo");
 }
   if(g.derecha){
     println("derecha");
   }
-  if(g.izquierda){
+  else if(g.izquierda){
     println("izquierda");
   }
   
