@@ -67,9 +67,5 @@ class Figura {
     }
   }
 
-  void mouse() {
-    if (mouseX!=0 && mouseY!=0) {
-      estado = int(random(1, 3));
-    }
-  }
+
 }
