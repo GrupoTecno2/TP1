@@ -3,6 +3,10 @@
   PImage [] azul = new PImage [20];//numero de figuras de rojo
   int valorRojo, valorAzul, valorAmarillo;
   float estado;
+  PImage figura;
+  
+  GestorDeInteraccion g;
+  Dir_y_Vel mouse;
 
 float x, y,w;
 float spdX,spdY,theta,rotSpd;
@@ -16,11 +20,16 @@ float tam,tam2;
 
 void setup(){
   size(800,800);
+  
+  g = new GestorDeInteraccion();
+  mouse = new Dir_y_Vel();
+  
   w = 250;
   spdX= 0.5;
   spdY=0.5;
   rotSpd = PI/180;
-  estado = int(random(1, 4));
+  estado = 3;//int(random(1, 4));
+  figura = loadImage("figura01.png");
   
   for ( int j = 1; j < rojo.length; j++ ) {
       rojo [j]  = loadImage("rojo"+ j +".png");
@@ -37,6 +46,7 @@ void setup(){
 }
 void draw(){
   background(255);
+  g.actualizar();
   translate(width/2.0,height/2.0);
   float angulo = map(mouseX,0,width,0,360);
   float dx = cos(radians(angulo));
@@ -56,8 +66,8 @@ void draw(){
     pushMatrix();
    translate(x,y);
    rotate(theta);
-   fill(c);
-   //tint(c);
+   //fill(c);
+   tint(c);
    image(rojo[valorRojo],-w/2,-w/2,tam,tam);
    popMatrix();
   } else if (estado==2) {
@@ -69,12 +79,23 @@ void draw(){
     image(azul[valorAzul],-w/2,-w/2,tam,tam);
     popMatrix();
  } else if (estado==3) {
+    } if (g.abajo) {
+      println("abajo");
+      c = color (255,0,0);
+    }
+    if (g.derecha) {
+      println("derecha");
+       c = color (0,255,0);
+    } else if (g.izquierda) {
+      println("izquierda");
+       c = color (0,0,255);
+    }
    pushMatrix();
     translate(x,y);
     rotate(theta);
-    fill(c);
-    //tint(c);
-    image(amarillo[valorAmarillo],-w/2,-w/2,tam,tam);
+    //fill(c);
+    tint(c);
+    image(figura,-w/2,-w/2,tam,tam);//(amarillo[valorAmarillo],-w/2,-w/2,tam,tam);
   popMatrix();
    x+= spdX;
   y+= spdY;
@@ -95,7 +116,7 @@ void draw(){
   contadorQueSeDetiene--;
  }
   
-}
+
 void espacioToroidal(){
   if(x>=width){
     x=0;
