@@ -21,7 +21,7 @@ void setup() {
 void draw() {
 
   f.texturizar ();
-  f.dibujar();
+  //f.dibujar();
 
 
  

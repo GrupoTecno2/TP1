@@ -34,8 +34,11 @@ class Figura {
     paleta= int(random(1, 4));
 
     textura = loadImage ("brocha.png");
+    textura.filter(INVERT);
     porciones = 100; 
     cualPorcion =0;
+    
+    
   }
 
   void dibujar() {
@@ -83,7 +86,8 @@ class Figura {
   }
 
   void actualizar() {
-    direc=int (radians(random(70, 360)));
+     //direc=int (radians(random(70, 360)));
+    direc += radians(random(40, 90));
     tam=tam+int(random(-10, 20));
     //tono
     hA=random(180, 255);
@@ -145,7 +149,7 @@ class Figura {
 
       pushStyle();
       colorMode( HSB, 360, 100, 100 );
-      tint(360);
+      tint(0, 100, 100);
       noStroke();
 
       beginShape();
