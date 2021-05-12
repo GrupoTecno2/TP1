@@ -3,6 +3,14 @@
 // El usuario tiene 40 segundos para interactuar
 // luego de ese tiempo, el programa se congela, y despues de 5segundos se reinicia
 // vuelve a empezar al hacer click
+
+
+
+
+//----------------------------------------------------------------------------------------------------------
+
+import oscP5.*; // importacion de libreria
+
 GestorDeInteraccion g;
 Dir_y_Vel mouse;
 
@@ -11,7 +19,7 @@ Paleta pRoja,pAzul,pAmarilla;
 int paleta;
 float cont2 = 0;
 String estado2;
-color fondo = color(61,random(5,10),random(95,100));
+color fondo;
 
 void setup() {
   size(800, 1000,P3D);
@@ -26,11 +34,13 @@ void setup() {
    fAzul= new Figura(pAzul.darUnColor());
    fAmarilla= new Figura(pAmarilla.darUnColor());
    paleta = int(random(1, 4));
+   fondo = color(61,random(5,10),random(95,100));
    background(fondo);
    
    
    g = new GestorDeInteraccion();
    mouse = new Dir_y_Vel();
+   
 }
 
 void draw() {
@@ -48,7 +58,6 @@ cont2= cont2+0.05;
       if (estado2.equals("reinicio")&& cont2>=45) {
         paleta = int(random(1, 4));
         reiniciar();
-        fondo = lerpColor(fondo,color(61,random(5,15),random(90,100)),0.2);
         background(fondo);
       }
     }
@@ -79,4 +88,6 @@ void reiniciar(){
       estado2 ="inicio";
       reiniciar();
     }
+
+    
 }

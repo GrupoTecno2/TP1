@@ -1,4 +1,6 @@
 class Figura {
+  
+  Sonido sonido;
   float x, y, tam;
   float vel, direc;
   String estado;
@@ -16,19 +18,21 @@ class Figura {
   float avance;
 
   Figura(color c_) {
+    
     estado ="inicio";
     x= random(width*0.40,width*0.60);
     y= random(height*0.40,height*0.60);
-    tam= random(100,200);
+    tam= random(200,400);
     vel=1;
     direc =int (radians(random(0, 360)));
     c=c_;
-    op = random(80,100);
+    op = random(90,100);
     
     textura = loadImage ("brocha.png");
     textura.filter(INVERT);
     porciones = 500; 
     cualPorcion =0;
+    sonido = new Sonido();
     
   }
 
