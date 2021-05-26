@@ -70,7 +70,7 @@ class Caminante {
     antesHabiaSonido = false;
   }
 
-  void actualizar(float amp, float pitch) {
+  void actualizar(float amp) {
 
     haySonido = amp > 0;
 
@@ -79,6 +79,7 @@ class Caminante {
 
     if (empezoElSonido) {
       cambiarAngulo();
+      cambiarOpacidad(amp);
       if(paletaRoja()){
       cambiarColor(pRoja.darUnColor());
       }else if(paletaAzul()){
@@ -104,9 +105,19 @@ class Caminante {
   }
 
   void cambiarAngulo() {
-    dir += radians(random(40, 170));
+    dir += radians(map(gPitch.filtradoNorm(), 0, 1, 40, 170));
     tam=tam+int(random(-10, 20));
-    op=random(80, 100);
+    //op=random(80, 100);
+    //op= map(amp, );
+  }
+  
+  void cambiarOpacidad(float amp) {
+   
+    
+    op= 80 + (amp*100);
+    //println(MIN_AMP, MAX_AMP);
+    //println("amp",amp);
+    println("opacidad",op);
   }
   
   void cambiarColor(color c_){

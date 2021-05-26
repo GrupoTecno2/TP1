@@ -7,7 +7,7 @@ Caminante fRoja,fAzul,fAmarilla;
 
 //----CALIBRACION
 
-float MIN_AMP = 60;
+float MIN_AMP = 50;
 float MAX_AMP = 80;
 
 float MIN_PITCH = 60;
@@ -48,7 +48,7 @@ void setup(){
    fAzul= new Caminante(pAzul.darUnColor());
    fAmarilla= new Caminante(pAmarilla.darUnColor());
    
-   paleta = int(random(1, 4));
+   paleta = int(random (1, 4));
    fondo = color(61,random(5,10),random(95,100));
    background(fondo);
    estado = "inicio";
@@ -61,21 +61,24 @@ void setup(){
 }
 void draw(){
   
-  cont = cont+0.02; 
+  //println(gAmp.filtradoNorm());
+  println("paleta",paleta);
+  
+  cont = cont+0.04; 
   
   gAmp.actualizar(amp);
   gPitch.actualizar(pitch);
   
   if(paleta==1){
-  fRoja.actualizar(gAmp.filtradoNorm(), gPitch.derivadaNorm());
+  fRoja.actualizar(gAmp.filtradoNorm());
   fRoja.dibujarTrazo();
   
   } if(paleta==2){
-  fAzul.actualizar(gAmp.filtradoNorm(), gPitch.derivadaNorm());
+  fAzul.actualizar(gAmp.filtradoNorm());
   fAzul.dibujarTrazo();
   
   }if(paleta==3){
-  fAmarilla.actualizar(gAmp.filtradoNorm(), gPitch.derivadaNorm());
+  fAmarilla.actualizar(gAmp.filtradoNorm());
   fAmarilla.dibujarTrazo();
   }
   
@@ -84,9 +87,9 @@ void draw(){
    //gPitch.imprimir(50, 220, 500, 100, false, true);  
   }
   
-  println("contador ="+ cont);
-  println(paleta);
-    if (cont>=25) {
+  //println("contador ="+ cont);
+  //println(paleta);
+    if (cont>=20) {
       estado ="reinicio";
       if (estado.equals("reinicio")&& cont>=30) {
         actualizar();
@@ -112,7 +115,7 @@ void actualizar(){
   estado = "inicio";
   gAmp.actualizar(amp);
   gPitch.actualizar(pitch);
-  paleta = int(random(1, 4));
+  paleta = int(map(gPitch.filtradoNorm(), 0, 1, 1, 4));
 }
 
 boolean paletaRoja(){
